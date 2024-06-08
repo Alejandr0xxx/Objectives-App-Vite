@@ -1,0 +1,12 @@
+.header{
+    @apply h-xl flex justify-between shadow bg-white relative;
+}
+.logo{
+    @apply pl-4 flex items-center;
+}
+.logoStyle{
+    @apply h-10 w-10 mr-2;
+}
+.appNameStyle{
+    @apply text-xl font-semibold text-gray-900 uppercase;
+}
