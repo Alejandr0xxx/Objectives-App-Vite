@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: [
+    './src/components/shared-components/.{jsx, css}',
+    './src/.{jsx, css}',
+  ],
   theme: {
     extend: {      
       height: {
