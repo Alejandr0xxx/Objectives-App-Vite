@@ -1,19 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './src/components/shared-components/.{jsx, css}',
-    './src/.{jsx, css}',
+    "./src/**/*.{jsx, css}",
+    "./*.html",
   ],
   theme: {
-    extend: {      
+    extend: {
       height: {
-      sm: '8px',
-      md: '16px',
-      lg: '24px',
-      xl: '48px',
-      main:'64px',
-    },},
+        sm: '8px',
+        md: '16px',
+        lg: '24px',
+        xl: '48px',
+        main: '64px',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-neumorphism')],
 }
 

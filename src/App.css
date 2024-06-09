@@ -1,0 +1,6 @@
+.card{
+    @apply rounded-xl m-2 my-3 text-gray-700 text-xs mx-4 nm-flat-white;
+}
+.button{
+    @apply text-sm font-bold py-1 px-4 rounded-full
+}
