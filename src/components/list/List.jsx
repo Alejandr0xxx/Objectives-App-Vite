@@ -8,7 +8,7 @@ const listMock = [{
     'Icon': '👨‍💻',
     'Objective': 365,
     'Deadline': '2025-01-01',
-    'Completed': 165
+    'Completed': 165,   
 }]
 
 function List() {

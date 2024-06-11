@@ -1,6 +1,30 @@
 .card{
-    @apply rounded-xl m-2 my-3 text-gray-700 text-xs mx-4 nm-flat-white;
+    @apply rounded-xl m-2 my-3 text-gray-700 text-xs mx-4 nm-flat-white overflow-hidden; 
 }
 .button{
-    @apply text-sm font-bold py-1 px-4 rounded-full
+    @apply text-sm font-bold py-1 px-4 rounded-full;
+}
+.label{
+    @apply uppercase block text-xs font-bold mb-4;
+}
+.input{
+    @apply block w-full nm-inset-gray-100 rounded-xl border h-8;
+}
+.button--black{
+    @apply text-sm font-bold py-1 px-4 rounded-full text-white nm-convex-gray-700;
+}
+.button--black:hover{
+    @apply nm-convex-gray-600
+}
+.button--black:active{
+    @apply nm-inset-gray-700 
+}
+.button--gray{
+    @apply text-sm font-bold py-1 px-4 rounded-full nm-convex-gray-100 ;
+}
+.button--gray:hover{
+    @apply nm-convex-red-500 text-white;
+}
+.button--gray:active{
+    @apply nm-inset-gray-200 text-inherit;
 }
