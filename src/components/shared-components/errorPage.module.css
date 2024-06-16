@@ -1,0 +1,3 @@
+.errorContainer{
+    @apply  flex w-dvw h-dvh bg-slate-200 justify-center items-center flex-col
+}

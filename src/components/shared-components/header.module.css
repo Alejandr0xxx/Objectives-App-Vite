@@ -8,5 +8,5 @@
     @apply h-10 w-10 mr-2;
 }
 .appNameStyle{
-    @apply text-xl font-semibold text-gray-900 uppercase;
+    @apply flex items-center text-xl font-semibold text-gray-900 uppercase;
 }

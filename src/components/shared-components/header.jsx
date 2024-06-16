@@ -6,8 +6,9 @@ function Header() {
     return (
         <div className={styles.header}>
             <div className={styles.logo}>
-                <LogoSVG className={styles.logoStyle} />
-                <a className={styles.appNameStyle} href="/">MetasApp</a>
+                
+                <a className={styles.appNameStyle} href="/">
+                <LogoSVG className={styles.logoStyle} />MetasApp</a>
             </div>
             <nav>
                     <Link href="/perfil" Icon={IconProfileSVG}>

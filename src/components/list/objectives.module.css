@@ -1,6 +1,9 @@
 .objectiveContainer{
     @apply flex p-2 justify-between
 }
+.createMain{
+    @apply flex flex-col items-center h-full justify-center 
+}
 .icon{
     @apply h-10 w-10 nm-inset-gray-50 rounded-full flex items-center justify-center text-2xl
 }
@@ -11,7 +14,7 @@
     @apply h-1 rounded bg-gradient-to-r from-indigo-500 via-purple-400 to-pink-300
 }
 .button{
-    @apply nm-convex-gray-50
+    @apply nm-convex-gray-50 self-center
 }
 .button:hover{
     @apply nm-convex-gray-300
