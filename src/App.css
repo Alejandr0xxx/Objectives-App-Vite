@@ -8,7 +8,7 @@
     @apply uppercase block text-xs font-bold mb-4;
 }
 .input{
-    @apply block w-full nm-inset-gray-100 rounded-xl border h-8;
+    @apply block w-full nm-inset-gray-100 rounded-xl border h-8 px-2 mt-1 ;
 }
 .button--black{
     @apply text-sm font-bold py-1 px-4 rounded-full text-white nm-convex-gray-700;
