@@ -2,7 +2,7 @@
     @apply rounded-xl m-2 my-3 text-gray-700 text-xs mx-4 nm-flat-white overflow-hidden; 
 }
 .button{
-    @apply text-sm font-bold py-1 px-4 rounded-full;
+    @apply text-sm font-bold py-1 px-4 rounded-full self-center nm-convex-gray-50;
 }
 .label{
     @apply uppercase block text-xs font-bold mb-4;

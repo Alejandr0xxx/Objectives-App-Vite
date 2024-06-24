@@ -5,10 +5,11 @@ import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './components/shared-components/layout';
 import ErrorPage from './components/shared-components/ErrorPage';
-import Details, { action as createObjective } from './components/createNew/objectiveDetail';
 import List from './components/list/List';
-import { loader as objectivesLoader, action as objectiveCompleted} from './components/list/objectives';
 import Profile from './components/profile/profile';
+import UpdateObj from './components/updarteObjective/updateObj';
+import Memory from './services/memory';
+import Details from './components/createNew/objectiveDetail';
 
   const root = createBrowserRouter([{
     path: '/',
@@ -18,19 +19,20 @@ import Profile from './components/profile/profile';
       {
         path: '/',
         element: <List />,
-        loader: objectivesLoader,
-        action: objectiveCompleted,
+      },
+      {
+        path:'/newObjective',
+        element:<Details/>
       },
       {
         path: '/list',
         element: <List />,
-        loader: objectivesLoader,
-        action: objectiveCompleted,
-      },
-      {
-        path: '/newObjetive',
-        element: <Details />,
-        action: createObjective,
+        children:[
+          {
+            path:'/list/:id',
+            element: <UpdateObj/>,
+          }
+        ]
       },
       {
         path: '/perfil',
@@ -43,7 +45,9 @@ import Profile from './components/profile/profile';
 const roote = ReactDOM.createRoot(document.getElementById('root'));
 roote.render(
   <React.StrictMode>
+    <Memory>
     <RouterProvider router={root} />
+    </Memory>
   </React.StrictMode>
 );
 

@@ -10,7 +10,7 @@ function MainContent() {
                 <Link href="/list"  Icon={ListSVG} text="Objectives List">
 
                 </Link>
-                <Link href="/newObjetive" Icon={CreateSVG}  text="New Objective">
+                <Link href="/newObjective" Icon={CreateSVG}  text="New Objective">
 
                 </Link>
             </aside>
