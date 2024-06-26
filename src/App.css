@@ -23,8 +23,17 @@
     @apply text-sm font-bold py-1 px-4 rounded-full nm-convex-gray-100 ;
 }
 .button--gray:hover{
-    @apply nm-convex-red-500 text-white;
+    @apply nm-convex-gray-300;
 }
 .button--gray:active{
+    @apply nm-inset-gray-200 text-inherit;
+}
+.button--red{
+    @apply text-sm font-bold py-1 px-4 rounded-full nm-flat-gray-100  text-red-600;
+}
+.button--red:hover{
+    @apply nm-convex-red-500 text-white;
+}
+.button--red:active{
     @apply nm-inset-gray-200 text-inherit;
 }
