@@ -39,7 +39,6 @@ function Details() {
 
 
     const create = () => {
-        console.log('Creandoe lemento')
         dispatch({ type: 'create', objective: form })
         navigate('/list')
     }
@@ -106,7 +105,7 @@ function Details() {
                     />
                 </label>
                 <label className="label">
-                    Do you have a deadline?
+                    Deadline
                     <input
                         className='input'
                         type="date"

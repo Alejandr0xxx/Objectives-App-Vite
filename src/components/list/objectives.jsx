@@ -1,6 +1,15 @@
 import { Link } from 'react-router-dom';
 import styles from './objectives.module.css';
+import { useContext } from 'react';
+import { Context } from '../../services/memory';
 function Objective({ icon, events, frecuency, objective, completedTimes, details, id }) {
+
+    const [, dispatch] = useContext(Context)
+
+    const completeOne = () => {
+        dispatch({ type: 'completeOne', id })
+    }
+
     return (
         <>
             <Link to={`/list/${id}`}>
@@ -13,7 +22,7 @@ function Objective({ icon, events, frecuency, objective, completedTimes, details
                         <p>{details}</p>
                     </div>
                     <div className={'flex'}>
-                        <div className='relative m-2 mx-5'>
+                        <div className=' relative m-2 mx-5'>
                             <p className='text-center'>{completedTimes} out of {objective}</p>
                             <div className={styles.bar1}>
                                 <div className={styles.bar2}
@@ -21,11 +30,10 @@ function Objective({ icon, events, frecuency, objective, completedTimes, details
                             </div>
                         </div>
                     </div>
-                    <form method='post' className={"button"}>
-                        <button type='submit'>¡Done!</button>
-                    </form>
+                    <button onClick={completeOne} className={"button--gray"} type='button'>¡Done!</button>
                 </div>
             </Link>
+
         </>
     );
 }

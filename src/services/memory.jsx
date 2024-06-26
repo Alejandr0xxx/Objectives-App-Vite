@@ -2,8 +2,8 @@ import { createContext, useReducer } from "react";
 import { v7 as uuidv7 } from 'uuid';
 
 
-const memory = localStorage.getItem('objectives');
-const initialState = memory ? JSON.parse(memory) : {
+const objectives = localStorage.getItem('objectives');
+const initialState = objectives ? JSON.parse(objectives) : {
     order: [],
     objectives: {}
 }
@@ -43,7 +43,7 @@ function objectiveReducer(state, action) {
             return newState
         };
         case 'destroy': {
-            const id = action.id
+            const id = action.id;
             const newOrder = state.order.filter(obj => obj !== id);
             delete state.objectives[id]
             const newState = {
@@ -52,9 +52,16 @@ function objectiveReducer(state, action) {
             };
             localStorage.setItem('objectives', JSON.stringify(newState))
             return newState
+        };
+        case 'completeOne': {
+            const  id= action.id;
+            alert(`Hola: ${id}`)
+            return state
         }
-        default:
-            throw new Error();
+        case 'addPfp':{
+            const pfp = action.pfp;
+            localStorage.setItem('pfp', pfp)
+        }
     }
 }
 

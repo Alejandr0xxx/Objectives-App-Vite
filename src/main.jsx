@@ -42,11 +42,9 @@ const root = createBrowserRouter([{
 
 const roote = ReactDOM.createRoot(document.getElementById('root'));
 roote.render(
-  <React.StrictMode>
     <Memory>
       <RouterProvider router={root} />
     </Memory>
-  </React.StrictMode>
 );
 
 
