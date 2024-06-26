@@ -10,3 +10,7 @@
 .main{
     @apply h-full w-full overflow-scroll;
 }
+
+.createMain{
+    @apply flex flex-col items-center h-full justify-center 
+}

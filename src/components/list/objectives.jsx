@@ -27,13 +27,6 @@ function Objective({ icon, events, frecuency, objective, completedTimes, details
                 </div>
             </Link>
         </>
-        // (
-        //     <div className={styles.createMain} >
-        //         <h1>There're no objectives yet</h1>
-        //         <p> Let's create one!</p>
-        //         <a href="/newObjetive" className='button--black mt-3'  ><button>Create</button></a>
-        //     </div>
-        // )
     );
 }
 

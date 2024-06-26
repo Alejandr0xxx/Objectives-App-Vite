@@ -1,9 +1,7 @@
 .objectiveContainer{
     @apply flex p-2 justify-between
 }
-.createMain{
-    @apply flex flex-col items-center h-full justify-center 
-}
+
 .icon{
     @apply h-10 w-10 nm-inset-gray-50 rounded-full flex items-center justify-center text-2xl
 }

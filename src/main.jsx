@@ -11,42 +11,40 @@ import Memory from './services/memory';
 import Details from './components/createNew/objectiveDetail';
 import Modal from './components/shared-components/Modal';
 
-  const root = createBrowserRouter([{
-    path: '/',
-    element: <Layout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: '/',
-        element: <List />,
-      },
-      {
-        path:'/newObjective',
-        element:<Details/>
-      },
-      {
-        path: '/list',
-        element: <List />,
-        children:[
-          {
-            path:'/list/:id',
-            element: <Modal><Details/></Modal>,
-          }
-        ]
-      },
-      {
-        path: '/perfil',
-        element: <Profile/>,
-      }
-    ]
-  },
+const root = createBrowserRouter([{
+  path: '/',
+  element: <Layout />,
+  errorElement: <ErrorPage />,
+  children: [
+    {
+      path: '/',
+      element: <List />,
+    },
+    {
+      path: '/newObjective',
+      element: <Details />
+    },
+    {
+      path: '/list',
+      element: <List />,
+    },
+    {
+      path: '/list/:id',
+      element: <Modal><Details /></Modal>,
+    },
+    {
+      path: '/perfil',
+      element: <Profile />,
+    }
+  ]
+},
 ])
 
 const roote = ReactDOM.createRoot(document.getElementById('root'));
 roote.render(
   <React.StrictMode>
     <Memory>
-    <RouterProvider router={root} />
+      <RouterProvider router={root} />
     </Memory>
   </React.StrictMode>
 );

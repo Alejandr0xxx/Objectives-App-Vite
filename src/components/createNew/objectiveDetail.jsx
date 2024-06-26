@@ -39,6 +39,7 @@ function Details() {
 
 
     const create = () => {
+        console.log('Creandoe lemento')
         dispatch({ type: 'create', objective: form })
         navigate('/list')
     }

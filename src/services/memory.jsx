@@ -1,25 +1,12 @@
 import { createContext, useReducer } from "react";
+import { v7 as uuidv7 } from 'uuid';
 
 
-const lista = [
-    {
-        id: 1,
-        details: 'TEST',
-        events: 2,
-        frecuency: 'monthly',
-        objective: 10,
-        deadline: '2026-03-04',
-        completed: true,
-        completedTimes: 3,
-        icon: '🏃',
-    }
-]
-
-const initialState = {
+const memory = localStorage.getItem('objectives');
+const initialState = memory ? JSON.parse(memory) : {
     order: [],
-    objectives: {},
+    objectives: {}
 }
-
 function objectiveReducer(state, action) {
     switch (action.type) {
         case 'add': {
@@ -28,12 +15,13 @@ function objectiveReducer(state, action) {
                 order: objectives.map(obj => obj.id),
                 objectives: objectives.reduce((data, objective) => ({ ...data, [objective.id]: objective }), {})
             };
+            localStorage.setItem('objectives', JSON.stringify(newState))
             return newState;
         };
         case 'create': {
-            const id = Math.random().toString(36).substring(2, 13)
+            const id = uuidv7();
             console.log(`ID: \n${id}`);
-            const newObjective = {...action.objective, id}
+            const newObjective = { ...action.objective, id }
             const newState = {
                 order: [...state.order, id],
                 objectives: {
@@ -41,39 +29,40 @@ function objectiveReducer(state, action) {
                     [id]: newObjective
                 }
             }
-            console.log(newState)
+            localStorage.setItem('objectives', JSON.stringify(newState))
             return newState
         };
-        case 'update':{
+        case 'update': {
             const id = action.objective.id;
-            state.objectives[id]={
+            state.objectives[id] = {
                 ...state.objectives[id],
                 ...action.objective
             }
-            const newState = {...state}
+            const newState = { ...state }
+            localStorage.setItem('objectives', JSON.stringify(newState))
             return newState
         };
-        case 'destroy':{
+        case 'destroy': {
             const id = action.id
-            const newOrder = state.order.filter(obj => obj  !== id);
+            const newOrder = state.order.filter(obj => obj !== id);
             delete state.objectives[id]
             const newState = {
                 order: newOrder,
                 objectives: state.objectives
             };
+            localStorage.setItem('objectives', JSON.stringify(newState))
             return newState
         }
-
+        default:
+            throw new Error();
     }
 }
 
 
-const initialObjectivesState = objectiveReducer(initialState, { type: 'add', objectives: lista})
-
 export const Context = createContext(null);
 
 export default function Memory({ children }) {
-    const [state, dispatch] = useReducer(objectiveReducer, initialObjectivesState)
+    const [state, dispatch] = useReducer(objectiveReducer, initialState)
     return (
         <Context.Provider value={[state, dispatch]}>
             {children}
