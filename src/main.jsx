@@ -33,7 +33,7 @@ const root = createBrowserRouter([{
       element: <Modal><Details /></Modal>,
     },
     {
-      path: '/perfil',
+      path: '/profile',
       element: <Profile />,
     }
   ]

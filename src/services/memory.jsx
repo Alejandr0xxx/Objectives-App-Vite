@@ -2,10 +2,12 @@ import { createContext, useReducer } from "react";
 import { v7 as uuidv7 } from 'uuid';
 
 
-const objectives = localStorage.getItem('objectives');
-const initialState = objectives ? JSON.parse(objectives) : {
+const userData = localStorage.getItem('data');
+const initialState = userData ? JSON.parse(userData) : {
     order: [],
-    objectives: {}
+    objectives: {},
+    profilePicture: null,
+    userInfo:{}
 }
 function objectiveReducer(state, action) {
     switch (action.type) {
@@ -13,9 +15,10 @@ function objectiveReducer(state, action) {
             const objectives = action.objectives
             const newState = {
                 order: objectives.map(obj => obj.id),
-                objectives: objectives.reduce((data, objective) => ({ ...data, [objective.id]: objective }), {})
+                objectives: objectives.reduce((data, objective) => ({ ...data, [objective.id]: objective }), {}),
+                profilePicture: state.profilePicture
             };
-            localStorage.setItem('objectives', JSON.stringify(newState))
+            localStorage.setItem('data', JSON.stringify(newState))
             return newState;
         };
         case 'create': {
@@ -26,20 +29,22 @@ function objectiveReducer(state, action) {
                 order: [...state.order, id],
                 objectives: {
                     ...state.objectives,
-                    [id]: newObjective
+                    [id]: newObjective,
+                    profilePicture: state.profilePicture,
+                    userInfo: state.userInfo
                 }
             }
-            localStorage.setItem('objectives', JSON.stringify(newState))
+            localStorage.setItem('data', JSON.stringify(newState))
             return newState
         };
         case 'update': {
             const id = action.objective.id;
             state.objectives[id] = {
                 ...state.objectives[id],
-                ...action.objective
+                ...action.objective,
             }
             const newState = { ...state }
-            localStorage.setItem('objectives', JSON.stringify(newState))
+            localStorage.setItem('data', JSON.stringify(newState))
             return newState
         };
         case 'destroy': {
@@ -48,19 +53,39 @@ function objectiveReducer(state, action) {
             delete state.objectives[id]
             const newState = {
                 order: newOrder,
-                objectives: state.objectives
+                objectives: state.objectives,
+                profilePicture: state.profilePicture,
+                userInfo: state.userInfo
             };
-            localStorage.setItem('objectives', JSON.stringify(newState))
+            localStorage.setItem('data', JSON.stringify(newState))
             return newState
         };
-        case 'completeOne': {
-            const  id= action.id;
-            alert(`Hola: ${id}`)
-            return state
-        }
+            // case 'completeOne': {
+            //     const  id= action.id;
+            //     alert(`Hola: ${id}`)
+            //     return state
+            // }
         case 'addPfp':{
-            const pfp = action.pfp;
-            localStorage.setItem('pfp', pfp)
+            const pfp = action.pfpImage;
+            const newState = {
+                order: state.order,
+                objectives: state.objectives,
+                profilePicture: pfp,
+                userInfo: state.userInfo
+            }
+            localStorage.setItem('data', JSON.stringify(newState))
+            return newState
+        };
+        case 'updateUser':{
+            const data = action.data;
+            const newState ={
+                    order: state.order,
+                    objectives: state.objectives,
+                    profilePicture: state.profilePicture,
+                    userInfo: data
+            }
+            localStorage.setItem('data', JSON.stringify(newState))
+            return newState;
         }
     }
 }

@@ -9,8 +9,9 @@ function MainContent() {
     const navigate = useNavigate();
     const locate = useLocation();
     const [state] = useContext(Context)
-    const areThereObjectives = state.order.length  === 0;
+    const areThereObjectives = state && state.order && state.order.length === 0;;
     const path = locate.pathname === '/' || locate.pathname === '/list';
+
 
     return (
         <div className={MainStyle.container}>
