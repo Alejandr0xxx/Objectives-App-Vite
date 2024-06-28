@@ -1,24 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './objectives.module.css';
 import { useContext } from 'react';
 import { Context } from '../../services/memory';
 function Objective({ icon, events, frecuency, objective, completedTimes, details, id }) {
 
     const [, dispatch] = useContext(Context)
-
     const completeOne = () => {
         dispatch({ type: 'completeOne', id })
     }
 
+    const locate = useLocation()
+    const path = locate.pathname === '/profile'
+    
     return (
         <>
             <div className={styles.objectiveContainer + " card"}>
-                <div className='flex justify-between w-full'>
                     <Link className='flex flex-row w-full' to={`/list/${id}`}>
                         <div className={'flex items-center'}>
                             <div className={styles.icon}>{icon}</div>
                             <p className={'ml-5 text-xl mr-10'}>{events}
-                                <sub className={'text-xs text-gray-500'}>/{frecuency}</sub>
+                                <sub className={'text-xs static text-gray-500'}>/{frecuency}</sub>
                             </p>
                             <p>{details}</p>
                         </div>
@@ -32,8 +33,7 @@ function Objective({ icon, events, frecuency, objective, completedTimes, details
                             </div>
                         </div>
                     </Link>
-                    <button className={"button--gray"} onClick={completeOne} type='button'>¡Done!</button>
-                </div>
+                    {!path && <button className={"button--gray"} onClick={completeOne} type='button'>¡Done!</button>}
             </div>
 
         </>

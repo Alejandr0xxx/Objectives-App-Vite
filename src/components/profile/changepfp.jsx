@@ -35,14 +35,14 @@ export default function ChangePfp({setChangePfp }) {
         }
     }
     return (
-        <div className="bg-slate-50 flex h-fit flex-col ">
-            <div className='flex flex-col'>
-                <img className='' src={image}/>
-                <input name='pfp' onChange={(e) => onChange(e)} type="file" accept='image/*' />
+        <div className="bg-slate-50 flex h-fit flex-col p-4 rounded-xl">
+            <div className='flex flex-col justify-center'>
+                <img className='mb-2' src={image}/>
+                <input  name='pfp'  onChange={(e) => onChange(e)} type="file" accept='image/*' />
             </div>
-            <div className="flex justify-between ">
-                <button onClick={(e)=> onClick(e)} name='Change' className="button">Change</button>
-                <button onClick={(e)=> onClick(e)}  name='Delete'>Delete</button>
+            <div className="flex justify-between mt-3">
+                <button onClick={(e)=> onClick(e)} name='Change' className="button--gray">Change</button>
+                <button onClick={(e)=> onClick(e)}  name='Delete' className='button--red' >Delete</button>
                 <button onClick={(e)=> onClick(e)} name='Cancel' className="button--red">Cancel</button>
             </div>
         </div>
