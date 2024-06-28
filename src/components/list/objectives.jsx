@@ -22,7 +22,7 @@ function Objective({ icon, events, frecuency, objective, completedTimes, details
                         <p>{details}</p>
                     </div>
                     <div className={'flex'}>
-                        <div className=' relative m-2 mx-5'>
+                        <div className='  m-2 mx-5'>
                             <p className='text-center'>{completedTimes} out of {objective}</p>
                             <div className={styles.bar1}>
                                 <div className={styles.bar2}
@@ -30,7 +30,7 @@ function Objective({ icon, events, frecuency, objective, completedTimes, details
                             </div>
                         </div>
                     </div>
-                    <button onClick={completeOne} className={"button--gray"} type='button'>¡Done!</button>
+                    <button className={"button--gray"} type='button'>¡Done!</button>
                 </div>
             </Link>
 

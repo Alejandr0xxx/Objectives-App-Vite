@@ -2,16 +2,11 @@ import Link from './link.jsx';
 import MainStyle from './mainContent.module.css';
 import ListSVG from '../../img/List.svg?react';
 import CreateSVG from '../../img/Create.svg?react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { Context } from '../../services/memory.jsx';
+import { Outlet, useLocation } from 'react-router-dom';
+import NoObjectives from './noObjectives.jsx';
 function MainContent() {
-    const navigate = useNavigate();
-    const locate = useLocation();
-    const [state] = useContext(Context)
-    const areThereObjectives = state && state.order && state.order.length === 0;;
-    const path = locate.pathname === '/' || locate.pathname === '/list';
-
+const locate = useLocation()
+const path = locate.pathname === '/profile'
 
     return (
         <div className={MainStyle.container}>
@@ -24,13 +19,7 @@ function MainContent() {
                 </Link>
             </aside>
             <main className={MainStyle.main}>
-            {areThereObjectives && path &&
-                <div className={MainStyle.createMain} >
-                    <h1>There're no objectives yet</h1>
-                    <p> Let's create one!</p>
-                    <button className='button--black mt-3' onClick={() => navigate('/newObjective')}>Create</button>
-                </div>
-            }
+                {!path && <NoObjectives/>}
                 <Outlet/> 
                 </main>
         </div>

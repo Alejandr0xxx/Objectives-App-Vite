@@ -1,3 +1,24 @@
 .profileContainer{
     @apply flex flex-row w-full h-full
 }
+
+.pfp{
+    @apply  h-48 w-48 
+}
+
+.objectivesContainer{
+    @apply h-72 overflow-scroll 
+}
+
+.objectivesContainer::-webkit-scrollbar{
+    @apply hidden
+}
+
+.profileFormContainer{
+    @apply flex w-full border-gray-300 border-l-2
+}
+
+.form{
+    @apply flex w-full p-2 flex-col;
+}
+

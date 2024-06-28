@@ -30,9 +30,9 @@ function objectiveReducer(state, action) {
                 objectives: {
                     ...state.objectives,
                     [id]: newObjective,
-                    profilePicture: state.profilePicture,
-                    userInfo: state.userInfo
-                }
+                },
+                profilePicture: state.profilePicture,
+                userInfo: state.userInfo,
             }
             localStorage.setItem('data', JSON.stringify(newState))
             return newState
@@ -86,6 +86,15 @@ function objectiveReducer(state, action) {
             }
             localStorage.setItem('data', JSON.stringify(newState))
             return newState;
+        }
+        case 'delPfp':{
+            const newState = {
+                order: state.order,
+                objectives: state.objectives,
+                userInfo: state.userInfo
+            }
+            localStorage.setItem('data', JSON.stringify(newState))
+            return newState
         }
     }
 }
