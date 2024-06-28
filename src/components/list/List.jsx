@@ -9,7 +9,6 @@ function List() {
         <>
         {state.order.map(id=> <Objective key={id} {...state.objectives[id]} />)}
         <Outlet/>
-
         </>
     );
 }
