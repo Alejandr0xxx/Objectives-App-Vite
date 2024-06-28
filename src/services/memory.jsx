@@ -7,7 +7,7 @@ const initialState = userData ? JSON.parse(userData) : {
     order: [],
     objectives: {},
     profilePicture: null,
-    userInfo:{}
+    userInfo: {}
 }
 function objectiveReducer(state, action) {
     switch (action.type) {
@@ -60,12 +60,31 @@ function objectiveReducer(state, action) {
             localStorage.setItem('data', JSON.stringify(newState))
             return newState
         };
-            // case 'completeOne': {
-            //     const  id= action.id;
-            //     alert(`Hola: ${id}`)
-            //     return state
-            // }
-        case 'addPfp':{
+        case 'completeOne': {
+            const id = action.id;
+            const objective = state.objectives[id];
+
+            if(Number(objective.completedTimes) >= Number(objective.objective)) return state;
+
+            if (objective) {
+                const objectiveTimes = Number(objective.objective)
+                const events = Number(objective.events);
+                const completedTimes = Number(objective.completedTimes)
+                const answer = (events + completedTimes);
+                const result = answer > objectiveTimes ? objectiveTimes : answer
+                objective.completedTimes = result
+                const newState = {
+                    ...state,
+                    objectives: {
+                        ...state.objectives,
+                        [id]: objective
+                    }
+                };
+                localStorage.setItem('data', JSON.stringify(newState));
+                return newState;
+            }
+        }
+        case 'addPfp': {
             const pfp = action.pfpImage;
             const newState = {
                 order: state.order,
@@ -76,18 +95,18 @@ function objectiveReducer(state, action) {
             localStorage.setItem('data', JSON.stringify(newState))
             return newState
         };
-        case 'updateUser':{
+        case 'updateUser': {
             const data = action.data;
-            const newState ={
-                    order: state.order,
-                    objectives: state.objectives,
-                    profilePicture: state.profilePicture,
-                    userInfo: data
+            const newState = {
+                order: state.order,
+                objectives: state.objectives,
+                profilePicture: state.profilePicture,
+                userInfo: data
             }
             localStorage.setItem('data', JSON.stringify(newState))
             return newState;
         }
-        case 'delPfp':{
+        case 'delPfp': {
             const newState = {
                 order: state.order,
                 objectives: state.objectives,

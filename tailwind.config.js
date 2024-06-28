@@ -13,6 +13,9 @@ export default {
         xl: '48px',
         main: '64px',
       },
+      width:{
+        xl: '86%'
+      }
     },
   },
   plugins: [require('tailwindcss-neumorphism')],

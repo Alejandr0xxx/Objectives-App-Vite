@@ -1,5 +1,5 @@
 .objectiveContainer{
-    @apply flex flex-row p-2 justify-between
+    @apply inline-flex w-xl flex-row p-2 justify-between
 }
 
 .icon{
