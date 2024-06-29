@@ -21,7 +21,7 @@ export default function Profile() {
     }
 
     const update = () => {
-        if(Object.values(form).some(value => !value)) return;
+        if(Object.values(form).some(value => !value || value === '')) return;
         dispatch({ type: 'updateUser', data: form })
     }
     const [changepfp, setChangePfp] = useState(false)
