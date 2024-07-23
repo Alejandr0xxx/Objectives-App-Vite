@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import { v7 as uuidv7 } from 'uuid';
-
+import PropTypes from 'prop-types';
 
 const userData = localStorage.getItem('data');
 const initialState = userData ? JSON.parse(userData) : {
@@ -20,7 +20,7 @@ function objectiveReducer(state, action) {
             };
             localStorage.setItem('data', JSON.stringify(newState))
             return newState;
-        };
+        }
         case 'create': {
             const id = uuidv7();
             console.log(`ID: \n${id}`);
@@ -36,7 +36,7 @@ function objectiveReducer(state, action) {
             }
             localStorage.setItem('data', JSON.stringify(newState))
             return newState
-        };
+        }
         case 'update': {
             const id = action.objective.id;
             state.objectives[id] = {
@@ -46,7 +46,7 @@ function objectiveReducer(state, action) {
             const newState = { ...state }
             localStorage.setItem('data', JSON.stringify(newState))
             return newState
-        };
+        }
         case 'destroy': {
             const id = action.id;
             const newOrder = state.order.filter(obj => obj !== id);
@@ -59,7 +59,7 @@ function objectiveReducer(state, action) {
             };
             localStorage.setItem('data', JSON.stringify(newState))
             return newState
-        };
+        }
         case 'completeOne': {
             const id = action.id;
             const objective = state.objectives[id];
@@ -83,6 +83,7 @@ function objectiveReducer(state, action) {
                 localStorage.setItem('data', JSON.stringify(newState));
                 return newState;
             }
+            break;
         }
         case 'addPfp': {
             const pfp = action.pfpImage;
@@ -94,7 +95,7 @@ function objectiveReducer(state, action) {
             }
             localStorage.setItem('data', JSON.stringify(newState))
             return newState
-        };
+        }
         case 'updateUser': {
             const data = action.data;
             const newState = {
@@ -115,17 +116,23 @@ function objectiveReducer(state, action) {
             localStorage.setItem('data', JSON.stringify(newState))
             return newState
         }
-    }
+        default:
+            return state;
+    }   
 }
 
 
-export const Context = createContext(null);
+export const MemoryContext = createContext(null);
 
 export default function Memory({ children }) {
     const [state, dispatch] = useReducer(objectiveReducer, initialState)
     return (
-        <Context.Provider value={[state, dispatch]}>
+        <MemoryContext.Provider value={[state, dispatch]}>
             {children}
-        </Context.Provider>
+        </MemoryContext.Provider>
     )
-};
+}
+
+Memory.propTypes = {
+    children: PropTypes.node
+}

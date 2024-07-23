@@ -1,10 +1,21 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './objectives.module.css';
 import { useContext } from 'react';
-import { Context } from '../../services/memory';
-function Objective({ icon, events, frecuency, objective, completedTimes, details, id }) {
+import { MemoryContext } from '../../../memory/memory';
 
-    const [, dispatch] = useContext(Context)
+interface MetaProps {
+    id: string;
+    icon: string;
+    events: number;
+    frecuency: number;
+    objective: number;
+    completedTimes: number;
+    details: string;
+}
+
+function Objective({ icon, events, frecuency, objective, completedTimes, details, id }: MetaProps) {
+
+    const [, dispatch] = useContext(MemoryContext)
     const completeOne = () => {
         dispatch({ type: 'completeOne', id })
     }

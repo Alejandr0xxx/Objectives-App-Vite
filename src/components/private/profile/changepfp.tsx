@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react';
 import Resizer from 'react-image-file-resizer'
-import { Context } from '../../services/memory';
-
-export default function ChangePfp({setChangePfp }) {
+import { MemoryContext } from '../../../memory/memory';
+interface changePfpProps{
+    setChangePfp: any;
+}
+export default function ChangePfp({setChangePfp}: changePfpProps) {
     const [image, setImage] = useState(null)
     const onChange = (event) =>{
             const file = event.target.files[0];
@@ -21,7 +23,7 @@ export default function ChangePfp({setChangePfp }) {
             );
     }
 
-    const [, dispatch] = useContext(Context)
+    const [, dispatch] = useContext(MemoryContext)
 
     const onClick = (e) =>{
         if(e.target.name === 'Cancel')setChangePfp(false);

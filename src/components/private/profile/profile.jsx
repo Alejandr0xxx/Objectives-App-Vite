@@ -1,14 +1,14 @@
 import styles from './profile.module.css'
-import defaultPfp from '../../img/defaultpfp.png'
+import defaultPfp from '../../../img/defaultpfp.png'
 import { useContext, useState } from 'react'
-import { Context } from '../../services/memory';
+import { MemoryContext } from '../../../memory/memory';
 import List from '../list/List';
-import NoObjectives from '../shared-components/noObjectives';
+import NoObjectives from '../../shared-components/noObjectives';
 import ChangePfp from './changepfp';
-import Modal from '../shared-components/Modal';
+import Modal from '../../shared-components/Modal';
 export default function Profile() {
 
-    const [, dispatch] = useContext(Context)
+    const [, dispatch] = useContext(MemoryContext)
     const [form, setForm] = useState({
         Username: null,
         Name: null,
@@ -29,7 +29,7 @@ export default function Profile() {
         setChangePfp(true)
     }
 
-    const { profilePicture } = useContext(Context)[0];
+    const { profilePicture } = useContext(MemoryContext)[0];
     return (
         <>
             {changepfp && <Modal><ChangePfp setChangePfp={setChangePfp}/> </Modal>}

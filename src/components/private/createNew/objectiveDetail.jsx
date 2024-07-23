@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import styles from './details.module.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import { Context } from '../../services/memory';
+import { MemoryContext } from '../../../memory/memory';
 
 
 
 function Details() {
     const { id } = useParams();
-    const [state, dispatch] = useContext(Context);
+    const [state, dispatch] = useContext(MemoryContext);
     const navigate = useNavigate()
     const [isCompleted, setisCompleted] = useState(false)
     const [form, setForm] = useState({
@@ -26,7 +26,6 @@ function Details() {
         if (!id) return;
         const objective = state.objectives[id];
         if (!objective) return navigate('/list');
-        console.log(objective)
         setForm(objective);
     }, [id])
 
