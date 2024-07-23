@@ -1,7 +1,7 @@
 import styles from './header.module.css';
 import LogoSVG from '../../img/Logo.svg?react';
 import IconProfileSVG from '../../img/IconProfile.svg';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { MemoryContext } from '../../memory/memory';
 import DDProfileMenu from '../assets/DropDownPfpMenu/DDProfileMenu';
 import { useLocation } from 'react-router-dom';
@@ -14,8 +14,21 @@ function Header() {
     const locate = useLocation()
     const path = locate.pathname === '/login' || locate.pathname === '/register'
     const pfpOnClick = () =>{
-        setDDPMenuIsOpen(prevState => !prevState); 
+        setDDPMenuIsOpen(!DDPMenuIsOpen); 
     }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (event.target.closest(`.${styles.header}`) === null) {
+                setDDPMenuIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+
     let pfp = profilePicture || IconProfileSVG
     return (
         <div className={styles.header}>

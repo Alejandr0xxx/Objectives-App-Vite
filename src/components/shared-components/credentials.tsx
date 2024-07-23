@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import styles from "./credentials.module.css"
+import styles from "./credentials.module.css";
 import { useNavigate } from "react-router-dom";
 
 interface CredentialProps {
